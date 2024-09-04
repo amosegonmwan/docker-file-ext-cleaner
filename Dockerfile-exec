@@ -1,0 +1,13 @@
+FROM python:3-alpine
+WORKDIR /data
+RUN apk add --no-cache git && \
+    pip install git+https://github.com/fhsinchy/rmbyext.git && \
+    apk del git
+ENTRYPOINT [ "rmbyext" ]
+CMD [ "txt" ]
+
+# docker image build -t exec-image:1.0 -f Dockerfile-exec .
+
+# docker container run --name remext $(pwd):/data exec-image:1.0 pdf
+# docker container run --name remext $(pwd):/data exec-image:1.0 md
+# docker container run --name remext $(pwd):/data exec-image:1.0 txt
